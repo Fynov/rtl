@@ -1,0 +1,17 @@
+/Users/Fynov/TestGame1/Temp/bin/Debug/UnityEngine.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/UnityEditor.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/Mono.Cecil.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/Unity.DataContract.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/Fynov/TestGame1/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/Fynov/TestGame1/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/Fynov/TestGame1/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/Fynov/TestGame1/obj/Debug/Assembly-CSharp.dll
+/Users/Fynov/TestGame1/obj/Debug/Assembly-CSharp.dll.mdb
