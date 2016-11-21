@@ -61,12 +61,12 @@ public class User_movement : MonoBehaviour {
                 anim.SetBool("Ground", false);
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
             }
-          /*  if (!grounded && Input.GetKeyDown(KeyCode.UpArrow) && doubleJump < amountOfAdditionalJumps)
+            if (!grounded && Input.GetKeyDown(KeyCode.UpArrow) && doubleJump < amountOfAdditionalJumps)
             {
                 anim.SetBool("Ground", false);
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
                 doubleJump++;
-            }*/
+            }
             if (grounded)
             {
                 doubleJump = 0;
