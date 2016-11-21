@@ -139,10 +139,6 @@ public class User_movement : MonoBehaviour {
             jumpForce = lvlJumpForce;
             maxSpeed = lvlMaxSpeed;
         }
-		//meni shortcut
-		if (Input.GetKeyDown (KeyCode.M)) {
-			Application.LoadLevel (0);
-		}
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             maxSpeed = maxSpeed + 10f;
