@@ -164,5 +164,9 @@ public class User_movement : MonoBehaviour {
             if(doubleJump != 1)
             amountOfAdditionalJumps--;
         }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Application.LoadLevel(0);
+        }
     }
 }
