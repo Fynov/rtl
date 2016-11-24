@@ -84,6 +84,7 @@
     <Compile Include="Assets\Main Game\Scripts\User_movement.cs" />
     <Compile Include="Assets\Main Game\Scripts\collider_script.cs" />
     <Compile Include="Assets\Main Game\Scripts\spike_collider_script.cs" />
+    <Compile Include="Assets\Main Game\Scripts\yellow_pad_collider.cs" />
     <Compile Include="Assets\Menu\Scripts\LoadOnClick.cs" />
     <Compile Include="Assets\Menu\Scripts\MainMenu.cs" />
   </ItemGroup>

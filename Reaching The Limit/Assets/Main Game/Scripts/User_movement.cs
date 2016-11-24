@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class User_movement : MonoBehaviour {
 
     public float maxSpeed = 30f;
     bool facingRight = true;
+    public Text attemptText;
+    public Text scoreText;
+    public Text speedText;
+    public Text forceText;
+    public Text AJText;
 
     //Skakanje
     bool grounded = false;
@@ -14,11 +20,17 @@ public class User_movement : MonoBehaviour {
     public float jumpForce = 700f;
     int doubleJump = 0;
     Animator anim;
-    int dead = 0;
     int amountOfAdditionalJumps = 0;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
 
+    int dead = 0;
+    public int attempt;
+    public int score;
+
+    void Start () {
+        attempt = 1;
+        score = 0;
+        IzpisiText();
         anim = GetComponent<Animator>();
 
 	}
@@ -114,8 +126,9 @@ public class User_movement : MonoBehaviour {
         if (other.gameObject.tag == "Spike")
         {               // < ---Write whatever you want.make sure that you object that you collide with has the same tag.
             dead++;
-           
-           // GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+            attempt++;
+            IzpisiText();
+            // GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
         }
     }
 
@@ -142,31 +155,46 @@ public class User_movement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             maxSpeed = maxSpeed + 10f;
+            IzpisiText();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             maxSpeed = maxSpeed - 10f;
+            IzpisiText();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             jumpForce = jumpForce + 200f;
+            IzpisiText();
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             jumpForce = jumpForce - 200f;
+            IzpisiText();
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             amountOfAdditionalJumps++;
+            IzpisiText();
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            if(doubleJump != 1)
+            if(amountOfAdditionalJumps != 0)
             amountOfAdditionalJumps--;
+            IzpisiText();
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
             Application.LoadLevel(0);
         }
+    }
+
+    void IzpisiText()
+    {
+        attemptText.text = "Attempt: " + attempt.ToString();
+        scoreText.text = "Score: " + score.ToString();
+        speedText.text = "Speed: " + maxSpeed.ToString();
+        forceText.text = "Force: " + jumpForce.ToString();
+        AJText.text = "AJ:" + amountOfAdditionalJumps.ToString();
     }
 }
