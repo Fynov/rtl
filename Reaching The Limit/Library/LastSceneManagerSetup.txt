@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/RTL.unity
+- path: Assets/Underground_1.unity
   isLoaded: 1
   isActive: 1
