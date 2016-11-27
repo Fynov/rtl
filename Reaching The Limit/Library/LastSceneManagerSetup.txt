@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< Updated upstream
-- path: Assets/Underground_1.unity
-=======
-- path: Assets/Menu.unity
->>>>>>> Stashed changes
+- path: Assets/Options.unity
   isLoaded: 1
   isActive: 1
