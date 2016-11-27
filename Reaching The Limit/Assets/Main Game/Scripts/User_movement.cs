@@ -152,6 +152,9 @@ public class User_movement : MonoBehaviour {
             jumpForce = lvlJumpForce;
             maxSpeed = lvlMaxSpeed;
         }
+		if (Input.GetKeyDown(KeyCode.P)){
+			Application.LoadLevel(0);
+		}
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             maxSpeed = maxSpeed + 10f;
