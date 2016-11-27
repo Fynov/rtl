@@ -186,15 +186,7 @@ public class User_movement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.M))
         {
             Application.LoadLevel(0);
-		}
-		if (Input.GetKeyDown(KeyCode.T)){
-			if (AudioListener.volume == 0) {
-				AudioListener.volume = 0.5f;
-
-			} else {
-				AudioListener.volume = 0f;
-			}
-		}
+        }
     }
 
     void IzpisiText()
