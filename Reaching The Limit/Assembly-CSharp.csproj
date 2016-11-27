@@ -50,6 +50,7 @@
      <Compile Include="Assets\Main Game\Scripts\collider_script.cs" />
      <Compile Include="Assets\Main Game\Scripts\spike_collider_script.cs" />
      <Compile Include="Assets\Main Game\Scripts\yellow_pad_collider.cs" />
+     <Compile Include="Assets\Menu\Scripts\ChangeVolume.cs" />
      <Compile Include="Assets\Menu\Scripts\LoadOnClick.cs" />
      <Compile Include="Assets\Menu\Scripts\MainMenu.cs" />
  <Reference Include="UnityEngine.Networking">

@@ -12,5 +12,14 @@ public class Music : MonoBehaviour {
 		} 
 	}
 	void Update () {
+
+		/*
+		if(Application.loadedLevelName == "Options")
+		{
+			GetComponent<AudioSource>().Stop();
+			AudioBegin = false;
+		}
+		za izklopit ce zelimo musko menjat
+		*/ 
 	}
 }
