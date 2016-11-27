@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Main Game\Scripts\Music.cs" />
      <Compile Include="Assets\Main Game\Scripts\User_movement.cs" />
      <Compile Include="Assets\Main Game\Scripts\collider_script.cs" />
      <Compile Include="Assets\Main Game\Scripts\spike_collider_script.cs" />
@@ -53,6 +52,7 @@
      <Compile Include="Assets\Menu\Scripts\ChangeVolume.cs" />
      <Compile Include="Assets\Menu\Scripts\LoadOnClick.cs" />
      <Compile Include="Assets\Menu\Scripts\MainMenu.cs" />
+     <Compile Include="Assets\Menu\Scripts\Music.cs" />
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
