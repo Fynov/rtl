@@ -1,29 +1,41 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class yellow_pad_collider : MonoBehaviour {
+public class yellow_pad_collider : MonoBehaviour
+{
 
     Animator jumpo;
-    // Use this for initialization
+    public float coolDown = 1;
+    public float coolDownTimer;
+
     void Start()
     {
-        Debug.Log("DELA");
         jumpo = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (coolDownTimer < 0)
+        {
+            coolDownTimer = 0;
+        }
+
+        if (coolDownTimer > 0)
+        {
+            coolDownTimer -= Time.deltaTime;
+        }
 
     }
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
-        Debug.Log("Detected collision between " + gameObject.name + " and " + collisionInfo.collider.name);
-        //print("There are " + collisionInfo.contacts.Length + " point(s) of contacts");
-        //print("Their relative velocity is " + collisionInfo.relativeVelocity);
-        jumpo.SetTrigger("yellow_pad_true");
-        collisionInfo.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 6500));
-        jumpo.SetTrigger("yellow_pad_false");
+        if (coolDownTimer == 0)
+        {
+            jumpo.SetTrigger("yellow_pad_true");
+            collisionInfo.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 6500));
+            jumpo.SetTrigger("yellow_pad_false");
+            coolDownTimer = coolDown;
+        }
+
     }
 }
 
