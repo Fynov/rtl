@@ -145,7 +145,7 @@ public class LoadOnClick : MonoBehaviour {
             string glvl = www.text;
             glvl = glvl.Substring(0,glvl.IndexOf("<"));
             int.TryParse(glvl, out getlvl);
-            if (getlvl == 1 || getlvl == 2 || getlvl == 3 || getlvl == 4 || getlvl == 5)
+            if (getlvl == 1 || getlvl == 2 || getlvl == 3 || getlvl == 4 || getlvl == 5 || getlvl == 6)
             {
                 error = 0;
                 Application.LoadLevel(getlvl);
