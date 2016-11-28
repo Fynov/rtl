@@ -19,14 +19,14 @@ public class ChangeVolume : MonoBehaviour {
 	}
 
 	public void MuteAudio(){
-		if (AudioListener.volume == 0) {
-			AudioListener.volume = 0.5f;
-			volumeSlider.value = AudioListener.volume;
+			if (AudioListener.volume == 0) {
+				AudioListener.volume = 0.5f;
+				volumeSlider.value = AudioListener.volume;
 
-		} else {
-			AudioListener.volume = 0f;
-			volumeSlider.value = AudioListener.volume;
-		}
+			} else {
+				AudioListener.volume = 0f;
+				volumeSlider.value = AudioListener.volume;
+			}
 		
 	}
 }
