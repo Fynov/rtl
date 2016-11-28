@@ -141,7 +141,8 @@ public class LoadOnClick : MonoBehaviour {
         }
         else
         {
-            //return
+            //return level number
+            //levele je treba po vrsti dat, pa ostale spremenit v build options (dat druge številke)
             string glvl = www.text;
             glvl = glvl.Substring(0,glvl.IndexOf("<"));
             int.TryParse(glvl, out getlvl);
