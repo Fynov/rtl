@@ -1,8 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
 - path: Assets/Menu.unity
-=======
-- path: Assets/Options.unity
->>>>>>> origin/Main
   isLoaded: 1
   isActive: 1
