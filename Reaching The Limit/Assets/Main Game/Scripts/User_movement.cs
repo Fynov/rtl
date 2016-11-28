@@ -148,7 +148,7 @@ public class User_movement : MonoBehaviour {
         {
             float lvlJumpForce = jumpForce;
             float lvlMaxSpeed = maxSpeed;
-            Application.LoadLevel("RTL");
+            Application.LoadLevel(Application.loadedLevelName);
             jumpForce = lvlJumpForce;
             maxSpeed = lvlMaxSpeed;
         }
