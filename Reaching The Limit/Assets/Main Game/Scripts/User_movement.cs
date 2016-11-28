@@ -130,6 +130,18 @@ public class User_movement : MonoBehaviour {
             IzpisiText();
             // GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
         }
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Out Of Bounds")
+        {               // < ---Write whatever you want.make sure that you object that you collide with has the same tag.
+            dead++;
+            attempt++;
+            IzpisiText();
+            
+        }
     }
 
 
