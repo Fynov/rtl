@@ -8,7 +8,7 @@ using System.Text;
 using System.Configuration;
 using System.Net;
 using System.Collections.Specialized;
-
+using System.Text.RegularExpressions;
 
 public class LoadOnClick : MonoBehaviour {
 
@@ -37,6 +37,23 @@ public class LoadOnClick : MonoBehaviour {
 		Application.Quit();
 	}
 
+    public bool Validate(string emailaddress)
+    {
+        string email = emailaddress;
+        Regex regex = new Regex(@"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*"
+                                + "@"
+                                + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
+        Match match = regex.Match(email);
+        if (match.Success)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void login()
     {
         if (usernamelogin.text != "" && passlogin.text != "")
@@ -54,6 +71,7 @@ public class LoadOnClick : MonoBehaviour {
             form.AddField("myform_pass", formPassword);//check pass
             //form.AddField("myform_lvl", formLvl);//level check
             WWW www = new WWW(url, form);
+
 
             loginsuccess.text = "Logging in...\n Please Wait!";
             StartCoroutine(WaitForRequest(www));
@@ -85,17 +103,23 @@ public class LoadOnClick : MonoBehaviour {
             int formLvl = 1;
 
 
-            WWWForm form = new WWWForm();
-            form.AddField("myform_nick", formNick);//check nick
-            form.AddField("myform_pass", formPassword);//check pass
-            form.AddField("myform_mail", formMail);//mail fill in
-            form.AddField("myform_lvl", formLvl);//level check
-            WWW www = new WWW(url, form);
+            if (Validate(formMail))
+            {
+                WWWForm form = new WWWForm();
+                form.AddField("myform_nick", formNick);//check nick
+                form.AddField("myform_pass", formPassword);//check pass
+                form.AddField("myform_mail", formMail);//mail fill in
+                form.AddField("myform_lvl", formLvl);//level check
+                WWW www = new WWW(url, form);
 
-
-            registersuccess.text = "Registering...\n Please wait.";
-            StartCoroutine(WaitForRegister(www));
-            form = empty;
+                registersuccess.text = "Registering...\n Please wait.";
+                StartCoroutine(WaitForRegister(www));
+                form = empty;
+            }
+            else
+            {
+                registersuccess.text = "Invalid Email!\n Try again.";
+            }
         }
         else
         {

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/RTL.unity
+- path: Assets/Register Form.unity
   isLoaded: 1
   isActive: 1
