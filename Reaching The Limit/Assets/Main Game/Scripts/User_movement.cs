@@ -11,6 +11,7 @@ public class User_movement : MonoBehaviour {
     public Text speedText;
     public Text forceText;
     public Text AJText;
+    public Text DeathText;
 
     //Skakanje
     bool grounded = false;
@@ -86,9 +87,13 @@ public class User_movement : MonoBehaviour {
         }
         if (dead == 1)
         {
-            Vector3 theScale = transform.localScale;
-            theScale.y *= -1;
-            transform.localScale = theScale;
+            //Vector3 theScale = transform.localScale;
+            //theScale.y *= -1;
+            //transform.localScale = theScale;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            DeathText.text = "Try Again\n Press Space To Respawn";
+
+            
         }
 
     }
@@ -156,7 +161,7 @@ public class User_movement : MonoBehaviour {
     //}
     void test_setting()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Space))
         {
             float lvlJumpForce = jumpForce;
             float lvlMaxSpeed = maxSpeed;
