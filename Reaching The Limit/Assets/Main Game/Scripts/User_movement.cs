@@ -163,10 +163,10 @@ public class User_movement : MonoBehaviour {
         {
             score += 5000;
             GetComponent<SpriteRenderer>().color = Color.red;
-            IzpisiText();
             jumpForce = jumpForce - (jumpForce / 5);
             maxSpeed = maxSpeed - (maxSpeed / 5);
             cam.backgroundColor = hell_colour;
+            IzpisiText();
             hell = true;
 
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("Blocks"))
@@ -199,6 +199,20 @@ public class User_movement : MonoBehaviour {
             hell = false;
             cam.backgroundColor = default_colour;
             GetComponent<SpriteRenderer>().color = Color.white;
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Blocks"))
+            {
+                g.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Plants"))
+            {
+                g.GetComponent<SpriteRenderer>().color = Color.white;
+            }
+
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Enviorment"))
+            {
+                g.GetComponent<SpriteRenderer>().color = Color.white;
+            }
         }
     }
 
