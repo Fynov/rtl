@@ -5,7 +5,8 @@ using System.Collections;
 public class User_movement : MonoBehaviour {
 
     public float maxSpeed = 30f;
-    bool facingRight = true;
+    public bool facingRight = true;
+    public bool hell;
     public Text attemptText;
     public Text scoreText;
     public Text speedText;
@@ -18,25 +19,33 @@ public class User_movement : MonoBehaviour {
     public Transform groundcheck;
     float groundRadious = 0.2f;
     public LayerMask whatIsGround;
-    public float jumpForce = 700f;
+    public float jumpForce = 2650f;
     int doubleJump = 0;
     Animator anim;
+    private Camera cam;
+    Color default_colour = new Color(92f / 255f, 192f / 255f, 233f / 255f, 255f);
+    Color hell_colour = new Color(79f/255f, 14f/255f, 14f/255f, 255f);
+    SpriteRenderer render;
     int amountOfAdditionalJumps = 0;
-    // Use this for initialization
+
+    GameObject[] blokeci;
+    GameObject[] rastline;
+    GameObject[] drugo;
 
     int dead = 0;
     public int attempt;
     public int score;
 
     void Start () {
+        hell = false;
         attempt = 1;
         score = 0;
         IzpisiText();
         anim = GetComponent<Animator>();
+        cam = Camera.main;
 
-	}
+    }
 	
-	// Update is called once per frame
 	void FixedUpdate () {
         if (dead == 0)
         {
@@ -65,7 +74,11 @@ public class User_movement : MonoBehaviour {
 
     void Update()
     {
+        check_if_hell();
         test_setting();
+        blokeci = GameObject.FindGameObjectsWithTag("Blocks");
+        rastline = GameObject.FindGameObjectsWithTag("Plants");
+        drugo = GameObject.FindGameObjectsWithTag("Enviorment");
         if (dead == 0)
         {
             //Skakanje
@@ -91,30 +104,10 @@ public class User_movement : MonoBehaviour {
             //theScale.y *= -1;
             //transform.localScale = theScale;
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            DeathText.text = "Try Again\n Press Space To Respawn";
-
-            
+            DeathText.text = "Try Again\n Press Space To Respawn";            
         }
-
     }
 
-   /* void doubleJump()
-    {
-        if (dJump)
-        {
-            int doubleJump = 0;
-            if (!grounded && Input.GetKeyDown(KeyCode.UpArrow) && doubleJump < 5)
-            {
-                anim.SetBool("Ground", false);
-                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
-                doubleJump++;
-            }
-            if (grounded)
-            {
-                doubleJump = 0;
-            }
-        }
-    }*/
 
     //Obracanje charactarja
     void flip()
@@ -127,9 +120,10 @@ public class User_movement : MonoBehaviour {
 
     //spike hit
     void OnCollisionEnter2D(Collision2D other)
-        {
+    {
+        coin_pick_up(other);
         if (other.gameObject.tag == "Spike")
-        {               // < ---Write whatever you want.make sure that you object that you collide with has the same tag.
+        {              
             dead++;
             attempt++;
             IzpisiText();
@@ -141,24 +135,95 @@ public class User_movement : MonoBehaviour {
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Out Of Bounds")
-        {               // < ---Write whatever you want.make sure that you object that you collide with has the same tag.
+        {               
             dead++;
             attempt++;
+            IzpisiText();    
+        }
+    } 
+
+    void coin_pick_up(Collision2D other)
+    {
+        if(other.gameObject.tag == "Gold_coin")
+        {
+            score += 25;
             IzpisiText();
-            
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "Silver_coin")
+        {
+            score += 100;
+            IzpisiText();
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "Blue_coin")
+        {
+            score += 500;
+            IzpisiText();
+            Destroy(other.gameObject);
+        }
+        if (other.gameObject.tag == "Red_coin")
+        {
+            score += 5000;
+            GetComponent<SpriteRenderer>().color = Color.red;
+            IzpisiText();
+            jumpForce = jumpForce - (jumpForce / 5);
+            maxSpeed = maxSpeed - (maxSpeed / 5);
+            cam.backgroundColor = hell_colour;
+            hell = true;
+
+            foreach (GameObject go in blokeci)
+            {
+                MeshRenderer[] renderers = go.GetComponentsInChildren<MeshRenderer>();
+                foreach (MeshRenderer r in renderers)
+                {
+                    foreach (Material m in r.materials)
+                    {
+                        if (m.HasProperty("_Color"))
+                            m.color = hell_colour;
+                    }
+                }
+            }
+            foreach (GameObject go in rastline)
+            {
+                MeshRenderer[] renderers = go.GetComponentsInChildren<MeshRenderer>();
+                foreach (MeshRenderer r in renderers)
+                {
+                    foreach (Material m in r.materials)
+                    {
+                            m.color = hell_colour;
+                    }
+                }
+            }
+            foreach (GameObject go in drugo)
+            {
+                MeshRenderer[] renderers = go.GetComponentsInChildren<MeshRenderer>();
+                foreach (MeshRenderer r in renderers)
+                {
+                    foreach (Material m in r.materials)
+                    {
+                            m.color = hell_colour;
+                    }
+                }
+            }
+            Destroy(other.gameObject);
         }
     }
 
+    void check_if_hell()
+    {
+        if(hell == true)
+        {
+            amountOfAdditionalJumps = 0;
+        }
+        if (maxSpeed >= 30f && jumpForce >= 2650f)
+        {
+            hell = false;
+            cam.backgroundColor = default_colour;
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
 
-    //void OnCollisionStay(Collision collisionInfo)
-    //{
-    //    print(gameObject.name + " and " + collisionInfo.collider.name + " are still colliding");
-    //}
-
-    //void OnCollisionExit(Collision collisionInfo)
-    //{
-    //    print(gameObject.name + " and " + collisionInfo.collider.name + " are no longer colliding");
-    //}
     void test_setting()
     {
         if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Space))
