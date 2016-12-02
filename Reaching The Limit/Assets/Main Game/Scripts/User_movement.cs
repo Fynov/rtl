@@ -79,6 +79,7 @@ public class User_movement : MonoBehaviour {
         blokeci = GameObject.FindGameObjectsWithTag("Blocks");
         rastline = GameObject.FindGameObjectsWithTag("Plants");
         drugo = GameObject.FindGameObjectsWithTag("Enviorment");
+        In_game_settings();
         if (dead == 0)
         {
             //Skakanje
@@ -127,20 +128,16 @@ public class User_movement : MonoBehaviour {
             dead++;
             attempt++;
             IzpisiText();
-            // GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
         }
 
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Out Of Bounds")
-        {               
+        if (other.gameObject.tag == "Spodnji_oblaki")
+        {
             dead++;
             attempt++;
-            IzpisiText();    
+            IzpisiText();
         }
-    } 
+    }
+
 
     void coin_pick_up(Collision2D other)
     {
@@ -172,40 +169,21 @@ public class User_movement : MonoBehaviour {
             cam.backgroundColor = hell_colour;
             hell = true;
 
-            foreach (GameObject go in blokeci)
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Blocks"))
             {
-                MeshRenderer[] renderers = go.GetComponentsInChildren<MeshRenderer>();
-                foreach (MeshRenderer r in renderers)
-                {
-                    foreach (Material m in r.materials)
-                    {
-                        if (m.HasProperty("_Color"))
-                            m.color = hell_colour;
-                    }
-                }
+                g.GetComponent<SpriteRenderer>().color = Color.red;
             }
-            foreach (GameObject go in rastline)
+
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Plants"))
             {
-                MeshRenderer[] renderers = go.GetComponentsInChildren<MeshRenderer>();
-                foreach (MeshRenderer r in renderers)
-                {
-                    foreach (Material m in r.materials)
-                    {
-                            m.color = hell_colour;
-                    }
-                }
+                g.GetComponent<SpriteRenderer>().color = Color.red;
             }
-            foreach (GameObject go in drugo)
+
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("Enviorment"))
             {
-                MeshRenderer[] renderers = go.GetComponentsInChildren<MeshRenderer>();
-                foreach (MeshRenderer r in renderers)
-                {
-                    foreach (Material m in r.materials)
-                    {
-                            m.color = hell_colour;
-                    }
-                }
+                g.GetComponent<SpriteRenderer>().color = Color.red;
             }
+
             Destroy(other.gameObject);
         }
     }
@@ -224,15 +202,27 @@ public class User_movement : MonoBehaviour {
         }
     }
 
+    void In_game_settings()
+    {
+        if(Input.GetKeyDown(KeyCode.O))//or when pause button.
+        {
+            //load half transparent scene on top of this one, with sound control and exit button.
+            pause();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            //Freeze until unpaused
+            pause();
+        }
+    }
+
+
     void test_setting()
     {
         if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Space))
         {
-            float lvlJumpForce = jumpForce;
-            float lvlMaxSpeed = maxSpeed;
-            Application.LoadLevel(Application.loadedLevelName);
-            jumpForce = lvlJumpForce;
-            maxSpeed = lvlMaxSpeed;
+            reset();
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -287,5 +277,26 @@ public class User_movement : MonoBehaviour {
         speedText.text = "Speed: " + maxSpeed.ToString();
         forceText.text = "Force: " + jumpForce.ToString();
         AJText.text = "AJ:" + amountOfAdditionalJumps.ToString();
+    }
+
+    void reset()
+    {
+        float lvlJumpForce = jumpForce;
+        float lvlMaxSpeed = maxSpeed;
+        Application.LoadLevel(Application.loadedLevelName);
+        jumpForce = lvlJumpForce;
+        maxSpeed = lvlMaxSpeed;
+    }
+
+    void pause()
+    {
+        if (Time.timeScale == 1)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 }
