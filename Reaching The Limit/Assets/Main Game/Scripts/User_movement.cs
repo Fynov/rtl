@@ -7,7 +7,12 @@ using System.Linq;
 public class User_movement : MonoBehaviour {
 
     public float maxSpeed = 30f;
+    public float jumpForce = 2650f;
     public bool facingRight = true;
+    public float DoubleJumpingCoolDown = 10;
+    public float DoubleJumpingCoolDownTimer;
+
+    public bool enchanted;
     public bool hell;
     public Text attemptText;
     public Text scoreText;
@@ -15,6 +20,12 @@ public class User_movement : MonoBehaviour {
     public Text forceText;
     public Text AJText;
     public Text DeathText;
+    public Animator anim;
+    private Camera cam;
+    public Color default_colour = new Color(92f / 255f, 192f / 255f, 233f / 255f, 255f);
+    public Color hell_colour = new Color(79f / 255f, 14f / 255f, 14f / 255f, 255f);
+    public GameObject sparks;
+    public SpriteRenderer render;
     public int ingameo = 0;
 
     //Skakanje
@@ -22,30 +33,22 @@ public class User_movement : MonoBehaviour {
     public Transform groundcheck;
     float groundRadious = 0.2f;
     public LayerMask whatIsGround;
-    public float jumpForce = 2650f;
     int doubleJump = 0;
-    Animator anim;
-    private Camera cam;
-    Color default_colour = new Color(92f / 255f, 192f / 255f, 233f / 255f, 255f);
-    Color hell_colour = new Color(79f/255f, 14f/255f, 14f/255f, 255f);
-    SpriteRenderer render;
     int amountOfAdditionalJumps = 0;
-
-    GameObject[] blokeci;
-    GameObject[] rastline;
-    GameObject[] drugo;
 
     int dead = 0;
     public int attempt;
     public int score;
 
     void Start () {
+        enchanted = false;
         hell = false;
         attempt = 1;
         score = 0;
         IzpisiText();
         anim = GetComponent<Animator>();
         cam = Camera.main;
+        sparks = GameObject.FindGameObjectWithTag("Shiny");
 
     }
 	
@@ -77,11 +80,9 @@ public class User_movement : MonoBehaviour {
 
     void Update()
     {
+        doubleJumpTimer();
         check_if_hell();
         test_setting();
-        blokeci = GameObject.FindGameObjectsWithTag("Blocks");
-        rastline = GameObject.FindGameObjectsWithTag("Plants");
-        drugo = GameObject.FindGameObjectsWithTag("Enviorment");
         In_game_settings();
         if (dead == 0)
         {
@@ -189,6 +190,19 @@ public class User_movement : MonoBehaviour {
 
             Destroy(other.gameObject);
         }
+
+        if (other.gameObject.tag == "Diamond")
+        {
+            hell = false;
+            score += 1500;
+            jumpForce = 2650;
+            maxSpeed = 30f;
+            amountOfAdditionalJumps++;
+            DoubleJumpingCoolDownTimer = DoubleJumpingCoolDown;
+            sparks.transform.localScale += new Vector3(2f, 2f, 2f);
+            IzpisiText();
+            Destroy(other.gameObject);
+        }
     }
 
     void check_if_hell()
@@ -237,8 +251,6 @@ public class User_movement : MonoBehaviour {
             }
         }
     }
-
-
 
     void test_setting()
     {
@@ -319,6 +331,27 @@ public class User_movement : MonoBehaviour {
         else
         {
             Time.timeScale = 1;
+        }
+    }
+
+    void doubleJumpTimer()
+    {
+        if (DoubleJumpingCoolDownTimer < 0)
+        {
+            DoubleJumpingCoolDownTimer = 0;
+        }
+
+        if (DoubleJumpingCoolDownTimer > 0)
+        {
+            DoubleJumpingCoolDownTimer -= Time.deltaTime;
+        }
+
+        if(DoubleJumpingCoolDownTimer == 0)
+        {
+            amountOfAdditionalJumps = 0;
+            if (sparks.transform.localScale.x == +2)
+                sparks.transform.localScale += new Vector3(-2f, -2f, -2f);
+            IzpisiText();
         }
     }
 }
