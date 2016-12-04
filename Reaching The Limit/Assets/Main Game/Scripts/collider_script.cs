@@ -6,6 +6,7 @@ public class collider_script : MonoBehaviour {
     Animator jumpo;
     public float coolDown = 1;
     public float coolDownTimer;
+	public float force = 4000;
 
     void Start () {
        
@@ -30,7 +31,7 @@ public class collider_script : MonoBehaviour {
         if (coolDownTimer == 0)
         {
             jumpo.SetTrigger("green_Pad-true");
-            collisionInfo.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 4000));
+			collisionInfo.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, force));
             jumpo.SetTrigger("green_Pad-false");
             coolDownTimer = coolDown;
         }

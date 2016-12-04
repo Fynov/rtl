@@ -1,7 +1,7 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reaching The Limit.CSharp", "Reaching The Limit.CSharp.csproj", "{B88BC665-00AF-780A-7D9A-6371BE0EF523}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{11874BC5-D0C6-767D-F3E1-251B959E3339}") = "Reaching The Limit", "Assembly-CSharp.csproj", "{272D3A68-EB03-43C9-629B-4A03F4CE38DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B88BC665-00AF-780A-7D9A-6371BE0EF523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B88BC665-00AF-780A-7D9A-6371BE0EF523}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B88BC665-00AF-780A-7D9A-6371BE0EF523}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B88BC665-00AF-780A-7D9A-6371BE0EF523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{272D3A68-EB03-43C9-629B-4A03F4CE38DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{272D3A68-EB03-43C9-629B-4A03F4CE38DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{272D3A68-EB03-43C9-629B-4A03F4CE38DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{272D3A68-EB03-43C9-629B-4A03F4CE38DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
