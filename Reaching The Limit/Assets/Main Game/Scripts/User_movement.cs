@@ -236,12 +236,6 @@ public class User_movement : MonoBehaviour {
                 ingameo = 0;
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            //Freeze until unpaused
-            pause();
-        }
     }
 
 
