@@ -201,5 +201,15 @@ public class LoadOnClick : MonoBehaviour {
             registersuccess.text = glvl;
         }
     }
-
+    
+    //IN GAME OPTIONS (Gumbi)
+    public void destroyMe()
+    {
+        Destroy(GameObject.Find("DestroyMe"));
+        Time.timeScale = 1;
+    }
+    public void gotoMainMenu()
+    {
+        Application.LoadLevel(0);
+    }
 }

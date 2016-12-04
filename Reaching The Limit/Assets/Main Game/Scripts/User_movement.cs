@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 public class User_movement : MonoBehaviour {
 
@@ -13,6 +15,7 @@ public class User_movement : MonoBehaviour {
     public Text forceText;
     public Text AJText;
     public Text DeathText;
+    public int ingameo = 0;
 
     //Skakanje
     bool grounded = false;
@@ -216,12 +219,22 @@ public class User_movement : MonoBehaviour {
         }
     }
 
-    void In_game_settings()
+    void In_game_settings() // Gumbi so v LoadOnClick.cs!
     {
         if(Input.GetKeyDown(KeyCode.O))//or when pause button.
         {
             //load half transparent scene on top of this one, with sound control and exit button.
             pause();
+            ingameo++;
+            if(ingameo == 1)
+            {
+                Application.LoadLevelAdditive("InGameOptions");
+            }
+            else
+            {
+                Destroy(GameObject.Find("DestroyMe"));
+                ingameo = 0;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.P))
@@ -230,6 +243,7 @@ public class User_movement : MonoBehaviour {
             pause();
         }
     }
+
 
 
     void test_setting()
