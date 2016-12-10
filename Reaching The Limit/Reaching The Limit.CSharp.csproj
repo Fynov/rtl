@@ -82,6 +82,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Main Game\Scripts\User_movement.cs" />
+    <Compile Include="Assets\Main Game\Scripts\Warp scripts\Ug1_bonus_tree_warp.cs" />
+    <Compile Include="Assets\Main Game\Scripts\Warp scripts\test_warp.cs" />
     <Compile Include="Assets\Main Game\Scripts\collider_script.cs" />
     <Compile Include="Assets\Main Game\Scripts\spike_collider_script.cs" />
     <Compile Include="Assets\Main Game\Scripts\yellow_pad_collider.cs" />
@@ -89,7 +91,6 @@
     <Compile Include="Assets\Menu\Scripts\LoadOnClick.cs" />
     <Compile Include="Assets\Menu\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Menu\Scripts\Music.cs" />
-    <Compile Include="Assets\Menu\Scripts\Warp scripts\test_warp.cs" />
     <Compile Include="Assets\Menu\Scripts\cactus.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
