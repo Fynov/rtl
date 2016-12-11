@@ -64,12 +64,28 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Main Game\Scripts\User_movement.cs" />
     <Compile Include="Assets\Main Game\Scripts\Warp scripts\Ug1_bonus_tree_warp.cs" />
     <Compile Include="Assets\Main Game\Scripts\Warp scripts\test_warp.cs" />
     <Compile Include="Assets\Main Game\Scripts\collider_script.cs" />
+    <Compile Include="Assets\Main Game\Scripts\moving_spike_block.cs" />
     <Compile Include="Assets\Main Game\Scripts\spike_collider_script.cs" />
     <Compile Include="Assets\Main Game\Scripts\yellow_pad_collider.cs" />
     <Compile Include="Assets\Menu\Scripts\ChangeVolume.cs" />
