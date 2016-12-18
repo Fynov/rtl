@@ -36,11 +36,12 @@ public class User_movement : MonoBehaviour {
     int doubleJump = 0;
     int amountOfAdditionalJumps = 0;
 
-    int dead = 0;
+    public bool dead = false;
     public int attempt;
     public int score;
 
     void Start () {
+        dead = false;
         enchanted = false;
         hell = false;
         attempt = 1;
@@ -48,12 +49,12 @@ public class User_movement : MonoBehaviour {
         IzpisiText();
         anim = GetComponent<Animator>();
         cam = Camera.main;
-        sparks = GameObject.FindGameObjectWithTag("Shiny");
+        //sparks = GameObject.Find("Sparks");
 
     }
 	
 	void FixedUpdate () {
-        if (dead == 0)
+        if (dead == false)
         {
             grounded = Physics2D.OverlapCircle(groundcheck.position, groundRadious, whatIsGround);
             anim.SetBool("Ground", grounded);
@@ -84,7 +85,7 @@ public class User_movement : MonoBehaviour {
         check_if_hell();
         test_setting();
         In_game_settings();
-        if (dead == 0)
+        if (dead == false)
         {
             //Skakanje
             if (grounded && Input.GetKeyDown(KeyCode.UpArrow))
@@ -103,7 +104,7 @@ public class User_movement : MonoBehaviour {
                 doubleJump = 0;
             }
         }
-        if (dead == 1)
+        if (dead == true)
         {
             //Vector3 theScale = transform.localScale;
             //theScale.y *= -1;
@@ -128,15 +129,15 @@ public class User_movement : MonoBehaviour {
     {
         coin_pick_up(other);
         if (other.gameObject.tag == "Spike")
-        {              
-            dead++;
+        {
+            dead = true;
             attempt++;
             IzpisiText();
         }
 
         if (other.gameObject.tag == "Spodnji_oblaki")
         {
-            dead++;
+            dead = true;
             attempt++;
             IzpisiText();
         }
@@ -199,7 +200,8 @@ public class User_movement : MonoBehaviour {
             maxSpeed = 30f;
             amountOfAdditionalJumps++;
             DoubleJumpingCoolDownTimer = DoubleJumpingCoolDown;
-            sparks.transform.localScale += new Vector3(2f, 2f, 2f);
+            if (sparks.transform.localScale.x == 0)
+                sparks.transform.localScale = new Vector3(3f, 3f, 0);
             IzpisiText();
             Destroy(other.gameObject);
         }
@@ -349,8 +351,8 @@ public class User_movement : MonoBehaviour {
         if(DoubleJumpingCoolDownTimer == 0)
         {
             amountOfAdditionalJumps = 0;
-            if (sparks.transform.localScale.x == +2)
-                sparks.transform.localScale += new Vector3(-2f, -2f, -2f);
+            if (sparks.transform.localScale.x > 1)
+                sparks.transform.localScale = new Vector3(0, 0, 0);
             IzpisiText();
         }
     }
