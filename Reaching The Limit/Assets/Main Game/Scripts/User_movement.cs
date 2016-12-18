@@ -64,7 +64,7 @@ public class User_movement : MonoBehaviour {
             float move = Input.GetAxis("Horizontal");
 
             anim.SetFloat("Speed", Mathf.Abs(move));
-
+            anim.SetFloat("vSpeed", GetComponent<Rigidbody2D>().velocity.y);
             GetComponent<Rigidbody2D>().velocity = new Vector2(move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
             if (move > 0 && !facingRight)
