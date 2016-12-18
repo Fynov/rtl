@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Advertisements;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -170,9 +171,10 @@ public class LoadOnClick : MonoBehaviour {
             string glvl = www.text;
             glvl = glvl.Substring(0,glvl.IndexOf("<"));
             int.TryParse(glvl, out getlvl);
-            if (getlvl == 1 || getlvl == 2 || getlvl == 3 || getlvl == 4 || getlvl == 5 || getlvl == 6)
+            if (getlvl == 7 || getlvl == 8 || getlvl == 9 || getlvl == 10 || getlvl == 11 || getlvl == 12 /*odvisn kuk levelov bo. Dodaj!*/)
             {
                 error = 0;
+                ShowAd();
                 Application.LoadLevel(getlvl);
             }
             else
@@ -212,4 +214,13 @@ public class LoadOnClick : MonoBehaviour {
     {
         Application.LoadLevel(0);
     }
+
+    public void ShowAd()
+    {
+        if (Advertisement.IsReady())
+        {
+            Advertisement.Show();
+        }
+    }
+
 }
