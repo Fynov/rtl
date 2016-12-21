@@ -88,6 +88,7 @@
     <Compile Include="Assets\Main Game\Scripts\Warp scripts\Ug1_bonus_tree_warp.cs" />
     <Compile Include="Assets\Main Game\Scripts\Warp scripts\test_warp.cs" />
     <Compile Include="Assets\Main Game\Scripts\collider_script.cs" />
+    <Compile Include="Assets\Main Game\Scripts\fallingSpikes.cs" />
     <Compile Include="Assets\Main Game\Scripts\moving_spike_block.cs" />
     <Compile Include="Assets\Main Game\Scripts\spike_collider_script.cs" />
     <Compile Include="Assets\Main Game\Scripts\yellow_pad_collider.cs" />

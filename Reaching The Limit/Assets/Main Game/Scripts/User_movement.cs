@@ -125,9 +125,13 @@ public class User_movement : MonoBehaviour {
     }
 
     //spike hit
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         coin_pick_up(other);
+    }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
         if (other.gameObject.tag == "Spike")
         {
             dead = true;
@@ -144,7 +148,7 @@ public class User_movement : MonoBehaviour {
     }
 
 
-    void coin_pick_up(Collision2D other)
+    void coin_pick_up(Collider2D other)
     {
         if(other.gameObject.tag == "Gold_coin")
         {
