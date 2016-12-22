@@ -3,7 +3,10 @@ using System.Collections;
 
 public class Ug1_bonus_tree_warp : MonoBehaviour {
 
-	// Use this for initialization
+    // Use this for initialization
+    public float xPos;
+    public float yPos;
+
 	void Start () {
 	
 	}
@@ -15,6 +18,6 @@ public class Ug1_bonus_tree_warp : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collisionInfo)
     {
-        collisionInfo.collider.GetComponent<Rigidbody2D>().transform.position = new Vector3(23, 350, 0);
+        collisionInfo.collider.GetComponent<Rigidbody2D>().transform.position = new Vector3(xPos, yPos, 0);
     }
 }

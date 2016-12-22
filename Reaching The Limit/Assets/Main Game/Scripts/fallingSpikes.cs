@@ -4,12 +4,13 @@ using System.Collections;
 public class fallingSpikes : MonoBehaviour {
 
     // Use this for initialization
-    GameObject c = new GameObject();
     public float cXpos;
     public bool moving = false;
     public float TriggerPosition;
+    public GameObject c;
 
-	void Start () {
+
+    void Start () {
         c = GameObject.Find("Character");
 	}
 	
