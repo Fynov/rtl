@@ -11,6 +11,7 @@ public class Destroyer : MonoBehaviour {
     public float DestroyObjectAtY;
     public float currentYposition;
     public float currentXposition;
+    public bool falling = true;
 
     GameObject pl;
     public float triggerPositionX;
@@ -30,31 +31,52 @@ public class Destroyer : MonoBehaviour {
     {
         playerPosX = pl.transform.position.x;
         playerPosY = pl.transform.position.y;
-        if(playerPosX > triggerPositionX)
-        {
-            this.GetComponent<Rigidbody2D>().isKinematic = false;
+        if (falling) { 
+            if(playerPosX > triggerPositionX)
+            {
+                this.GetComponent<Rigidbody2D>().isKinematic = false;
+            }
+
+            currentXposition = this.transform.position.x;
+            currentYposition = this.transform.position.y;
+            if (transform.position.y < DestroyObjectAtY)
+            {
+                GameObject m = (GameObject)Instantiate(bigExpl, new Vector3(currentXposition, currentYposition, 0), Quaternion.identity);
+                Destroy(m.gameObject, 1);
+                Destroy(this.gameObject);
+            }
         }
-
-        currentXposition = this.transform.position.x;
-        currentYposition = this.transform.position.y;
-        if (transform.position.y < DestroyObjectAtY)
+        if (!falling)
         {
-            GameObject m = (GameObject)Instantiate(bigExpl,new Vector3(currentXposition, currentYposition, 0), Quaternion.identity);
-            Destroy(m.gameObject, 1);
-            Destroy(this.gameObject);
+            if (playerPosX > triggerPositionX)
+            {
+                this.GetComponent<Rigidbody2D>().isKinematic = false;
+            }
 
+            currentXposition = this.transform.position.x;
+            currentYposition = this.transform.position.y;
+            if (transform.position.y > DestroyObjectAtY)
+            {
+                GameObject m = (GameObject)Instantiate(bigExpl, new Vector3(currentXposition, currentYposition, 0), Quaternion.identity);
+                Destroy(m.gameObject, 1);
+                Destroy(this.gameObject);
+            }
         }
     }
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.name != "Character")
+        if (other.gameObject.name != "Character" && other.gameObject.name != "destroyer")
         {
             ObjectX = other.transform.position.x;
             ObjectY = other.transform.position.y;
             GameObject m = (GameObject)Instantiate(expl, new Vector3(ObjectX, ObjectY, 0), Quaternion.identity);
             Destroy(other.gameObject);
             Destroy(m.gameObject, 1);
+        }
+        if(other.gameObject.name == "Character")
+        {
+            this.GetComponent<Rigidbody2D>().isKinematic = false;
         }
     }
 }

@@ -128,6 +128,13 @@ public class User_movement : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other)
     {
         coin_pick_up(other);
+
+        if (other.gameObject.tag == "Explosion")
+        {
+            dead = true;
+            attempt++;
+            IzpisiText();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D other)

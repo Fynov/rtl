@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Main Game\Scripts\Destroyer.cs" />
+    <Compile Include="Assets\Main Game\Scripts\Explosion_on_collision.cs" />
     <Compile Include="Assets\Main Game\Scripts\UpDownMovingBlock.cs" />
     <Compile Include="Assets\Main Game\Scripts\User_movement.cs" />
     <Compile Include="Assets\Main Game\Scripts\Warp scripts\Ug1_bonus_tree_warp.cs" />
