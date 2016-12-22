@@ -27,12 +27,12 @@ public class collider_script : MonoBehaviour {
         }
 
     }
-    void OnCollisionEnter2D(Collision2D collisionInfo)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (coolDownTimer == 0)
+        if (coolDownTimer == 0 && other.gameObject.name == "Character")
         {
             jumpo.SetTrigger("green_Pad-true");
-			collisionInfo.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(forceSIDE, forceUP));
+			other.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(forceSIDE, forceUP));
             jumpo.SetTrigger("green_Pad-false");
             coolDownTimer = coolDown;
         }
