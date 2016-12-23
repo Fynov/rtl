@@ -153,6 +153,11 @@ public class LoadOnClick : MonoBehaviour {
         Application.LoadLevel("Login");
     }
 
+    public void openShop()
+    {
+        Application.LoadLevel("Shop");
+    }
+
 
     IEnumerator WaitForRequest(WWW www)
     {
@@ -171,11 +176,11 @@ public class LoadOnClick : MonoBehaviour {
             string glvl = www.text;
             glvl = glvl.Substring(0,glvl.IndexOf("<"));
             int.TryParse(glvl, out getlvl);
-            if (getlvl == 7 || getlvl == 8 || getlvl == 9 || getlvl == 10 || getlvl == 11 || getlvl == 12 /*odvisn kuk levelov bo. Dodaj!*/)
+            if (getlvl < 7/* 7 = shop */)
             {
                 error = 0;
                 ShowAd();
-                Application.LoadLevel(getlvl);
+                Application.LoadLevel(getlvl+1);
             }
             else
             {
@@ -221,6 +226,12 @@ public class LoadOnClick : MonoBehaviour {
         {
             Advertisement.Show();
         }
+    }
+
+    public void ShowAdForCoins()
+    {
+        ShowAd();
+        //coins +500
     }
 
 }
