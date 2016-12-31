@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Main Game\Scripts\Destroyer.cs" />
+    <Compile Include="Assets\Main Game\Scripts\Dissapearing_blocks.cs" />
     <Compile Include="Assets\Main Game\Scripts\Explosion_on_collision.cs" />
     <Compile Include="Assets\Main Game\Scripts\Trgger_remove_object.cs" />
     <Compile Include="Assets\Main Game\Scripts\UpDownMovingBlock.cs" />
