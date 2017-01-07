@@ -12,6 +12,7 @@ public class Destroyer : MonoBehaviour {
     public float currentYposition;
     public float currentXposition;
     public bool falling = true;
+    public AudioSource explosy;
 
     GameObject pl;
     public float triggerPositionX;
@@ -58,6 +59,7 @@ public class Destroyer : MonoBehaviour {
             if (transform.position.y > DestroyObjectAtY)
             {
                 GameObject m = (GameObject)Instantiate(bigExpl, new Vector3(currentXposition, currentYposition, 0), Quaternion.identity);
+                explosy.Play();
                 Destroy(m.gameObject, 1);
                 Destroy(this.gameObject);
             }
@@ -71,6 +73,7 @@ public class Destroyer : MonoBehaviour {
             ObjectX = other.transform.position.x;
             ObjectY = other.transform.position.y;
             GameObject m = (GameObject)Instantiate(expl, new Vector3(ObjectX, ObjectY, 0), Quaternion.identity);
+            explosy.Play();
             Destroy(other.gameObject);
             Destroy(m.gameObject, 1);
         }

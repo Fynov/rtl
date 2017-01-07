@@ -9,9 +9,10 @@ public class Dissapearing_blocks : MonoBehaviour {
     bool touched = false;
     public GameObject diss;
     bool happened = false;
+    public AudioSource portal;
 
     void Start () {
-	   
+
 	}
 	
 	// Update is called once per frame
@@ -27,6 +28,7 @@ public class Dissapearing_blocks : MonoBehaviour {
         }
         if(currentCoolDown == 0 && touched && !happened)
         {
+            portal.Play();
             GameObject m = (GameObject)Instantiate(diss, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
             Destroy(m, 0.8f);
             Destroy(this.gameObject, 0.4f);

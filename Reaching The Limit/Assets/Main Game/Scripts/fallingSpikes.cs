@@ -8,6 +8,7 @@ public class fallingSpikes : MonoBehaviour {
     public bool moving = false;
     public float TriggerPosition;
     public GameObject c;
+    public AudioSource SoundDrop;
 
 
     void Start () {
@@ -28,6 +29,7 @@ public class fallingSpikes : MonoBehaviour {
     {
         if(other.gameObject.name != "Character")
         {
+            SoundDrop.Play();
             this.tag = "Untagged";
         }
     }

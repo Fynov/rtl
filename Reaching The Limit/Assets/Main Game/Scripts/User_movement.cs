@@ -26,7 +26,15 @@ public class User_movement : MonoBehaviour {
     public Color hell_colour = new Color(79f / 255f, 14f / 255f, 14f / 255f, 255f);
     public GameObject sparks;
     public SpriteRenderer render;
-    public int ingameo = 0;
+    public AudioSource SoundJump;
+    public AudioSource SoundCoin;
+    public AudioSource SoundHell;
+    public AudioSource SoundDiamond;
+    public AudioSource SoundSpike;
+    public AudioSource SoundHellWhispers;
+    public AudioSource SoundHeartbeat;
+
+    int ingameo = 0;
 
     //Skakanje
     bool grounded = false;
@@ -91,11 +99,13 @@ public class User_movement : MonoBehaviour {
             if (grounded && Input.GetKeyDown(KeyCode.UpArrow))
             {
                 anim.SetBool("Ground", false);
+                SoundJump.Play();
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
             }
             if (!grounded && Input.GetKeyDown(KeyCode.UpArrow) && doubleJump < amountOfAdditionalJumps)
             {
                 anim.SetBool("Ground", false);
+                SoundJump.Play();
                 GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
                 doubleJump++;
             }
@@ -141,6 +151,7 @@ public class User_movement : MonoBehaviour {
     {
         if (other.gameObject.tag == "Spike")
         {
+            SoundSpike.Play();
             dead = true;
             attempt++;
             IzpisiText();
@@ -159,24 +170,30 @@ public class User_movement : MonoBehaviour {
     {
         if(other.gameObject.tag == "Gold_coin")
         {
+            SoundCoin.Play();
             score += 25;
             IzpisiText();
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "Silver_coin")
         {
+            SoundCoin.Play();
             score += 100;
             IzpisiText();
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "Blue_coin")
         {
+            SoundCoin.Play();
             score += 500;
             IzpisiText();
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "Red_coin")
         {
+            SoundHellWhispers.Play();
+            SoundHell.Play();
+            SoundHeartbeat.Play();
             score += 5000;
             GetComponent<SpriteRenderer>().color = Color.red;
             jumpForce = jumpForce - (jumpForce / 5);
@@ -184,6 +201,7 @@ public class User_movement : MonoBehaviour {
             cam.backgroundColor = hell_colour;
             IzpisiText();
             hell = true;
+            
 
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("Blocks"))
             {
@@ -205,6 +223,7 @@ public class User_movement : MonoBehaviour {
 
         if (other.gameObject.tag == "Diamond")
         {
+            SoundDiamond.Play();
             hell = false;
             score += 1500;
             jumpForce = 2650;
@@ -226,7 +245,10 @@ public class User_movement : MonoBehaviour {
         }
         if (maxSpeed >= 30f && jumpForce >= 2650f)
         {
+
             hell = false;
+            SoundHellWhispers.Stop();
+            SoundHeartbeat.Stop();
             cam.backgroundColor = default_colour;
             GetComponent<SpriteRenderer>().color = Color.white;
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("Blocks"))
