@@ -57,6 +57,8 @@ public class User_movement : MonoBehaviour {
         IzpisiText();
         anim = GetComponent<Animator>();
         cam = Camera.main;
+        anim.SetBool("Hell", false);
+        anim.SetBool("Alive", true);
         //sparks = GameObject.Find("Sparks");
 
     }
@@ -116,9 +118,6 @@ public class User_movement : MonoBehaviour {
         }
         if (dead == true)
         {
-            //Vector3 theScale = transform.localScale;
-            //theScale.y *= -1;
-            //transform.localScale = theScale;
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
             DeathText.text = "Try Again\n Press Space To Respawn";            
         }
@@ -139,9 +138,11 @@ public class User_movement : MonoBehaviour {
     {
         coin_pick_up(other);
 
-        if (other.gameObject.tag == "Explosion")
+        if (other.gameObject.tag == "Explosion" && dead == false)
         {
             dead = true;
+            anim.SetBool("Alive", false);
+            anim.SetTrigger("Dying");
             attempt++;
             IzpisiText();
         }
@@ -149,17 +150,21 @@ public class User_movement : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Spike")
+        if (other.gameObject.tag == "Spike" && dead == false)
         {
-            SoundSpike.Play();
             dead = true;
+            anim.SetBool("Alive", false);
+            anim.SetTrigger("Dying");
+            SoundSpike.Play();
             attempt++;
             IzpisiText();
         }
 
-        if (other.gameObject.tag == "Spodnji_oblaki")
+        if (other.gameObject.tag == "Spodnji_oblaki" && dead == false)
         {
             dead = true;
+            anim.SetBool("Alive", false);
+            anim.SetTrigger("Dying");
             attempt++;
             IzpisiText();
         }
@@ -195,13 +200,17 @@ public class User_movement : MonoBehaviour {
             SoundHell.Play();
             SoundHeartbeat.Play();
             score += 5000;
-            GetComponent<SpriteRenderer>().color = Color.red;
+            //GetComponent<SpriteRenderer>().color = Color.red;
             jumpForce = jumpForce - (jumpForce / 5);
             maxSpeed = maxSpeed - (maxSpeed / 5);
             cam.backgroundColor = hell_colour;
             IzpisiText();
             hell = true;
-            
+            anim.SetBool("Hell", true);
+            anim.SetTrigger("ToHell");
+            if (sparks.transform.localScale.x > 1)
+                sparks.transform.localScale = new Vector3(0, 0, 0);
+
 
             foreach (GameObject g in GameObject.FindGameObjectsWithTag("Blocks"))
             {
@@ -225,6 +234,8 @@ public class User_movement : MonoBehaviour {
         {
             SoundDiamond.Play();
             hell = false;
+            anim.SetBool("Hell", false);
+            anim.SetTrigger("ToEden");
             score += 1500;
             jumpForce = 2650;
             maxSpeed = 30f;
