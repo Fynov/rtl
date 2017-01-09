@@ -101,7 +101,7 @@ public class LoadOnClick : MonoBehaviour {
             string formNick = usernametext.text;
             string formPassword = passtext.text;
             string formMail = mailtext.text;
-            int formLvl = 1;
+            int formLvl = 8;
 
 
             if (Validate(formMail))
@@ -176,11 +176,11 @@ public class LoadOnClick : MonoBehaviour {
             string glvl = www.text;
             glvl = glvl.Substring(0,glvl.IndexOf("<"));
             int.TryParse(glvl, out getlvl);
-            if (getlvl < 7/* 7 = shop */)
+            if (getlvl > 7)
             {
                 error = 0;
                 ShowAd();
-                Application.LoadLevel(getlvl+1);
+                Application.LoadLevel(getlvl);
             }
             else
             {
