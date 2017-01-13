@@ -33,6 +33,7 @@ public class User_movement : MonoBehaviour {
     public AudioSource SoundSpike;
     public AudioSource SoundHellWhispers;
     public AudioSource SoundHeartbeat;
+    private bool showPopUp = false;
 
     int ingameo = 0;
 
@@ -168,6 +169,61 @@ public class User_movement : MonoBehaviour {
             attempt++;
             IzpisiText();
         }
+
+        if(other.gameObject.name == "Finito")
+        {
+            showPopUp = true;
+        }
+    }
+
+
+    void OnGUI()
+    {
+        if (showPopUp)
+        {
+            GUI.Window(0, new Rect((Screen.width / 2) - 150, (Screen.height / 2) - 75
+                   , 300, 250), ShowGUI, "CONGRATS!");
+
+        }
+    }
+
+    void ShowGUI(int windowID)
+    {
+
+        GUI.Label(new Rect(65, 40, 200, 30), "Go to the next level!");
+        
+
+        if (GUI.Button(new Rect(50, 150, 75, 30), "NEXT"))
+        {
+            showPopUp = false;
+            int ind = Application.loadedLevel;
+
+            //save progress
+            WWWForm empty = new WWWForm();
+            string url = "http://test7293.comli.com/lvl.php";
+            string hash = "securitystuff";
+            string formNick = PlayerPrefs.GetString("myform_nick");
+            string formPassword = "";
+            
+
+            WWWForm form = new WWWForm();
+            form.AddField("myform_hash", hash); //hash and hash :D preveri če je isti uporabnik (sql)
+            form.AddField("myform_nick", formNick);//check nick
+            form.AddField("myform_pass", formPassword);//check pass
+            form.AddField("myform_lvl", ind+1);//level check
+            WWW www = new WWW(url, form);
+
+            StartCoroutine(WaitForRequest(www));
+            form = empty;
+
+            Application.LoadLevel(ind + 1);
+        }
+
+    }
+
+    IEnumerator WaitForRequest(WWW www)
+    {
+        yield return www;
     }
 
 

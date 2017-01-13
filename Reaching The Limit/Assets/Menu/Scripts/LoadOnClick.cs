@@ -75,6 +75,7 @@ public class LoadOnClick : MonoBehaviour {
 
 
             loginsuccess.text = "Logging in...\n Please Wait!";
+            PlayerPrefs.SetString("myform_nick", formNick);
             StartCoroutine(WaitForRequest(www));
             form = empty;
             //if (error == 0)
@@ -231,7 +232,7 @@ public class LoadOnClick : MonoBehaviour {
     public void ShowAdForCoins()
     {
         ShowAd();
-        //coins +500
+        PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score")+500);
     }
 
 }
