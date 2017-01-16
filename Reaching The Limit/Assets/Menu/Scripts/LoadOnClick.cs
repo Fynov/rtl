@@ -180,7 +180,7 @@ public class LoadOnClick : MonoBehaviour {
             if (getlvl > 7)
             {
                 error = 0;
-                ShowAd();
+                //ShowAd();
                 Application.LoadLevel(getlvl);
             }
             else
@@ -221,7 +221,7 @@ public class LoadOnClick : MonoBehaviour {
         Application.LoadLevel(0);
     }
 
-    public void ShowAd()
+    /*public void ShowAd()
     {
         if (Advertisement.IsReady())
         {
@@ -233,6 +233,6 @@ public class LoadOnClick : MonoBehaviour {
     {
         ShowAd();
         PlayerPrefs.SetInt("score", PlayerPrefs.GetInt("score")+500);
-    }
+    }*/
 
 }
